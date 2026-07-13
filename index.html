@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr. and Mrs. Pastry</title>
+<meta name="description" content="A neighborhood bakery. Fresh bread and pastry, made daily. Call or email to order.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --black: #0a0a0a;
+    --near-black: #121212;
+    --white: #f6f4ef;
+    --white-dim: rgba(246,244,239,0.62);
+    --white-faint: rgba(246,244,239,0.28);
+    --gold: #c8a765;
+    --line: rgba(246,244,239,0.16);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', Helvetica, Arial, sans-serif;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--black);
+    color:var(--white);
+    font-family:var(--sans);
+    font-weight:300;
+    letter-spacing:0.02em;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:50;
+    background:linear-gradient(to bottom, rgba(10,10,10,0.92), rgba(10,10,10,0));
+    padding:22px 0;
+  }
+  nav.wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand-mark{
+    font-family:var(--serif);
+    font-size:20px;
+    letter-spacing:0.04em;
+  }
+  .nav-links{
+    display:flex;
+    gap:36px;
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+  }
+  .nav-links a{
+    color:var(--white-dim);
+    transition:color 0.25s ease;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{ color:var(--white); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    padding:140px 32px 80px;
+  }
+
+  .logo-placeholder{
+    width:96px;
+    height:96px;
+    border:1px solid var(--white-faint);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:var(--sans);
+    font-size:10px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--white-faint);
+    margin-bottom:40px;
+  }
+
+  .hero-name{
+    font-family:var(--serif);
+    font-weight:300;
+    font-size:clamp(48px, 9vw, 104px);
+    line-height:1.02;
+    letter-spacing:0.01em;
+  }
+  .hero-name .amp{
+    display:block;
+    font-style:italic;
+    font-size:0.55em;
+    color:var(--gold);
+    margin:6px 0;
+  }
+
+  .hero-sub{
+    margin-top:26px;
+    font-size:12px;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--white-dim);
+  }
+
+  .hero-rule{
+    width:1px;
+    height:64px;
+    background:var(--white-faint);
+    margin:56px auto 0;
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{
+    padding:120px 0;
+    border-top:1px solid var(--line);
+  }
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:18px;
+  }
+  .section-title{
+    font-family:var(--serif);
+    font-weight:300;
+    font-size:clamp(32px, 4vw, 46px);
+    margin-bottom:56px;
+  }
+
+  /* ---------- MENU ---------- */
+  .menu-list{
+    display:flex;
+    flex-direction:column;
+  }
+  .menu-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:24px;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .menu-item:first-child{ border-top:1px solid var(--line); }
+  .menu-item-name{
+    font-family:var(--serif);
+    font-size:24px;
+    font-weight:400;
+  }
+  .menu-item-desc{
+    display:block;
+    font-family:var(--sans);
+    font-size:13px;
+    color:var(--white-dim);
+    margin-top:6px;
+    letter-spacing:0.01em;
+  }
+  .menu-item-price{
+    font-size:15px;
+    color:var(--gold);
+    white-space:nowrap;
+  }
+  .menu-note{
+    margin-top:36px;
+    font-size:13px;
+    color:var(--white-faint);
+    font-style:italic;
+    font-family:var(--serif);
+  }
+
+  .submenu{
+    margin-top:88px;
+  }
+  .submenu-title{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:26px;
+    margin-bottom:8px;
+  }
+  .submenu-copy{
+    font-size:14px;
+    color:var(--white-dim);
+    max-width:52ch;
+    margin-bottom:32px;
+  }
+
+  .addon-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    column-gap:48px;
+  }
+  .addon-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:16px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    font-size:15px;
+  }
+  .addon-item span:first-child{ color:var(--white); }
+  .addon-item span:last-child{
+    font-size:12px;
+    color:var(--white-faint);
+    white-space:nowrap;
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:16px;
+  }
+  .gallery-item{
+    aspect-ratio:1 / 1;
+    border:1px solid var(--white-faint);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:10px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--white-faint);
+  }
+  .gallery-item:nth-child(2){ opacity:0.85; }
+  .gallery-item:nth-child(5){ opacity:0.85; }
+
+  /* ---------- ORDER / CONTACT ---------- */
+  .order{
+    text-align:center;
+  }
+  .order .section-title{ margin-bottom:20px; }
+  .order-copy{
+    color:var(--white-dim);
+    font-size:16px;
+    max-width:48ch;
+    margin:0 auto 48px;
+    line-height:1.7;
+  }
+  .order-actions{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:18px 36px;
+    border:1px solid var(--white);
+    font-size:12px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    transition:background 0.25s ease, color 0.25s ease;
+  }
+  .btn:hover, .btn:focus-visible{
+    background:var(--white);
+    color:var(--black);
+  }
+  .btn.ghost{
+    border-color:var(--white-faint);
+    color:var(--white-dim);
+  }
+  .btn.ghost:hover{
+    border-color:var(--white);
+    background:transparent;
+    color:var(--white);
+  }
+
+  .address{
+    margin-top:56px;
+    font-size:14px;
+    color:var(--white-faint);
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:36px 0;
+  }
+  .footer-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:11px;
+    letter-spacing:0.1em;
+    color:var(--white-faint);
+    text-transform:uppercase;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:720px){
+    .nav-links{ display:none; }
+    section{ padding:88px 0; }
+    .menu-item{ flex-direction:column; align-items:flex-start; gap:4px; }
+    .addon-grid{ grid-template-columns:1fr; }
+    .gallery-grid{ grid-template-columns:repeat(2, 1fr); }
+    .order-actions{ flex-direction:column; align-items:stretch; }
+    .footer-row{ flex-direction:column; gap:10px; text-align:center; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition:none !important; }
+  }
+
+  :focus-visible{
+    outline:1px solid var(--gold);
+    outline-offset:4px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand-mark">Mr and Mrs Pastry</div>
+    <div class="nav-links">
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#order">Order</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="logo-placeholder" role="img" aria-label="Logo placeholder">LOGO</div>
+  <h1 class="hero-name">
+    Mr. and Mrs.
+    <span class="amp">&amp;</span>
+    Pastry
+  </h1>
+  <p class="hero-sub">Bread &amp; Pastry &mdash; Baked Daily</p>
+  <div class="hero-rule" aria-hidden="true"></div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="eyebrow">The Menu</div>
+    <h2 class="section-title">What's baking</h2>
+
+    <div class="menu-list">
+      <div class="menu-item">
+        <div>
+          <span class="menu-item-name">Classic Vanilla Cake</span>
+          <span class="menu-item-desc">Layered sponge, whipped filling, available by the slice or whole</span>
+        </div>
+        <div class="menu-item-price">$6 / $38</div>
+      </div>
+
+      <div class="menu-item">
+        <div>
+          <span class="menu-item-name">Dark Chocolate Cake</span>
+          <span class="menu-item-desc">Rich cocoa layers, deep and not-too-sweet</span>
+        </div>
+        <div class="menu-item-price">$6 / $40</div>
+      </div>
+
+      <div class="menu-item">
+        <div>
+          <span class="menu-item-name">New York Cheesecake</span>
+          <span class="menu-item-desc">Dense and creamy, graham crust</span>
+        </div>
+        <div class="menu-item-price">$7</div>
+      </div>
+
+      <div class="menu-item">
+        <div>
+          <span class="menu-item-name">Cupcakes</span>
+          <span class="menu-item-desc">Sold by the half-dozen, flavor and icing your choice</span>
+        </div>
+        <div class="menu-item-price">$18 / half-dozen</div>
+      </div>
+
+      <div class="menu-item">
+        <div>
+          <span class="menu-item-name">Seasonal Fruit Tart</span>
+          <span class="menu-item-desc">Pastry cream, whatever's ripe this week</span>
+        </div>
+        <div class="menu-item-price">$7</div>
+      </div>
+
+      <div class="menu-item">
+        <div>
+          <span class="menu-item-name">Sea Salt Chocolate Chip Cookie</span>
+          <span class="menu-item-desc">Brown butter, dark chocolate, flaky salt</span>
+        </div>
+        <div class="menu-item-price">$4</div>
+      </div>
+
+      <div class="menu-item">
+        <div>
+          <span class="menu-item-name">Fudge Brownie</span>
+          <span class="menu-item-desc">Dense, fudgy center, crackled top</span>
+        </div>
+        <div class="menu-item-price">$4.50</div>
+      </div>
+    </div>
+
+    <div class="submenu">
+      <h3 class="submenu-title">Toppings</h3>
+      <p class="submenu-copy">Add on to any cake, cupcake, or tart.</p>
+      <div class="addon-grid">
+        <div class="addon-item"><span>Fresh berries</span><span>+$1.50</span></div>
+        <div class="addon-item"><span>Toasted coconut</span><span>+$1</span></div>
+        <div class="addon-item"><span>Chopped hazelnuts</span><span>+$1</span></div>
+        <div class="addon-item"><span>Chocolate shavings</span><span>+$1</span></div>
+        <div class="addon-item"><span>Caramel drizzle</span><span>+$1</span></div>
+        <div class="addon-item"><span>Rainbow sprinkles</span><span>+$0.50</span></div>
+      </div>
+    </div>
+
+    <div class="submenu">
+      <h3 class="submenu-title">Icings &amp; Frostings</h3>
+      <p class="submenu-copy">Every cake and cupcake can be finished in-house with any of the following.</p>
+      <div class="addon-grid">
+        <div class="addon-item"><span>Vanilla buttercream</span><span>Included</span></div>
+        <div class="addon-item"><span>Chocolate ganache</span><span>Included</span></div>
+        <div class="addon-item"><span>Cream cheese frosting</span><span>Included</span></div>
+        <div class="addon-item"><span>Swiss meringue</span><span>+$1</span></div>
+        <div class="addon-item"><span>Salted caramel</span><span>+$1</span></div>
+        <div class="addon-item"><span>Lemon glaze</span><span>Included</span></div>
+      </div>
+    </div>
+
+    <p class="menu-note">Menu changes with the seasons &mdash; call ahead for the current lineup and availability.</p>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="eyebrow">Gallery</div>
+    <h2 class="section-title">A few of our favorites</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">PHOTO</div>
+      <div class="gallery-item">PHOTO</div>
+      <div class="gallery-item">PHOTO</div>
+      <div class="gallery-item">PHOTO</div>
+      <div class="gallery-item">PHOTO</div>
+      <div class="gallery-item">PHOTO</div>
+    </div>
+  </div>
+</section>
+
+<section id="order" class="order">
+  <div class="wrap">
+    <div class="eyebrow">Order</div>
+    <h2 class="section-title">No online ordering &mdash;<br>just call or write.</h2>
+    <p class="order-copy">We keep it simple. Call ahead to reserve today's bake, or email us for custom and large orders. We'll confirm pickup time when you order.</p>
+    <div class="order-actions">
+      <a class="btn" href="tel:+15551234567">Call (555) 123-4567</a>
+      <a class="btn ghost" href="mailto:order@mrandmrspastry.com">Email to Order</a>
+    </div>
+    <p class="address">123 Main Street &middot; Your Town, ST 00000</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>&copy; 2026 Mr. and Mrs. Pastry</span>
+    <span>Baked fresh, every day</span>
+  </div>
+</footer>
+
+</body>
+</html>
