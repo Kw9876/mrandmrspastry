@@ -101,6 +101,13 @@
     color:var(--white-faint);
     margin-bottom:40px;
   }
+  
+  .logo-placeholder img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+  }
 
   .hero-name{
     font-family:var(--serif);
@@ -344,7 +351,7 @@
 
 <header>
   <nav class="wrap">
-    <div class="brand-mark">Mr and Mrs Pastry</div>
+    <div class="brand-mark">Mr. and Mrs. Pastry</div>
     <div class="nav-links">
       <a href="#menu">Menu</a>
       <a href="#gallery">Gallery</a>
@@ -354,10 +361,12 @@
 </header>
 
 <section class="hero">
-  <div class="logo-placeholder" role="img" aria-label="Logo placeholder">LOGO</div>
+  <div class="logo-placeholder">
+    <img src="images/logo.jpg" alt="Mr. and Mrs. Pastry logo">
+  </div>
   <h1 class="hero-name">
-    Mr. and Mrs.
-    <span class="amp">&amp;</span>
+    Mr. <span class="amp" style="display:inline; margin:0;">&amp;</span> Mrs.
+    <br>
     Pastry
   </h1>
   <p class="hero-sub">Bread &amp; Pastry &mdash; Homemade, Baked Daily</p>
